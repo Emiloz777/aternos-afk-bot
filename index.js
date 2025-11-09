@@ -5,10 +5,10 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // === Ustawienia serwera Minecraft ===
-const HOST = process.env.MC_HOST || 'Vexpvp.aternos.me' // adres serwera
-const PORT_MC = process.env.MC_PORT || 18891                 // port serwera
-const USERNAME = process.env.MC_USER || 'afkzone_0'             // nick bota
-const PASSWORD = process.env.MC_PASS || null                 // tylko jeśli masz AuthMe
+const HOST = process.env.MC_HOST || 'twojserwer.aternos.me' // adres serwera
+const PORT_MC = process.env.MC_PORT || 25565                 // port serwera
+const USERNAME = process.env.MC_USER || 'BotAFK'             // nick bota
+const PASSWORD = process.env.MC_PASS || null                 // jeśli masz AuthMe
 
 // === Serwer HTTP keepalive (żeby Render nie usypiał) ===
 app.get('/', (req, res) => res.send('✅ Bot działa 24/7'))
@@ -19,12 +19,13 @@ function createBot() {
   const bot = mineflayer.createBot({
     host: HOST,
     port: PORT_MC,
-    username: USERNAME
-    version: '1.21.10'
+    username: USERNAME,
+    version: '1.21.10' // <-- wersja Minecraft serwera
   })
 
   bot.on('spawn', () => {
     console.log(`[BOT] Zalogowano jako ${USERNAME}`)
+    
     if (PASSWORD) {
       setTimeout(() => {
         bot.chat(`/login ${PASSWORD}`)
@@ -32,7 +33,7 @@ function createBot() {
       }, 2000)
     }
 
-    // Prosty AFK - co 5 minut obrót w losową stronę
+    // Prosty AFK - obrót co 5 minut, żeby bot nie został wyrzucony
     setInterval(() => {
       bot.look(Math.random() * 360, 0)
     }, 5 * 60 * 1000)
@@ -48,4 +49,6 @@ function createBot() {
   })
 }
 
+// Uruchamiamy bota
 createBot()
+
