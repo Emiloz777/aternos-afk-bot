@@ -20,6 +20,7 @@ function createBot() {
     host: HOST,
     port: PORT_MC,
     username: USERNAME
+    version: '1.21.10'
   })
 
   bot.on('spawn', () => {
