@@ -5,9 +5,9 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // === Ustawienia serwera Minecraft ===
-const HOST = process.env.MC_HOST || 'twojserwer.aternos.me' // adres serwera
-const PORT_MC = process.env.MC_PORT || 25565                 // port serwera
-const USERNAME = process.env.MC_USER || 'BotAFK'             // nick bota
+const HOST = process.env.MC_HOST || 'Vexpvp.aternos.me' // adres serwera
+const PORT_MC = process.env.MC_PORT || 18891                 // port serwera
+const USERNAME = process.env.MC_USER || 'afkzone_0'             // nick bota
 const PASSWORD = process.env.MC_PASS || null                 // tylko jeśli masz AuthMe
 
 // === Serwer HTTP keepalive (żeby Render nie usypiał) ===
